@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ye'Abesha Be'al - Ethiopian Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style> 
+        :root {
+            --ethiopian-gold: #fbbf24;
+            --ethiopian-green: #064e3b;
+            --ethiopian-red: #991b1b;
+        }
+
+        body { 
+            font-family: 'Fira Sans Condensed', sans-serif; 
+            background: #0a0a05; /* Warm dark brown/black */
+            color: #f8fafc;
+            overflow-x: hidden;
+        } 
+
+        /* Tibeb Pattern Header */
+        .tibeb-header {
+            background-image: repeating-linear-gradient(90deg, 
+                var(--ethiopian-green) 0, var(--ethiopian-green) 15px, 
+                var(--ethiopian-gold) 15px, var(--ethiopian-gold) 20px, 
+                var(--ethiopian-red) 20px, var(--ethiopian-red) 35px);
+            height: 8px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Floating Adey Abeba Petals */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            background: var(--ethiopian-gold);
+            border-radius: 150% 0 150% 0; /* Petal Shape */
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.5));
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Ethiopian Glass Card */
+        .holiday-card {
+            background: rgba(20, 20, 10, 0.6);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .holiday-card:hover {
+            border-color: var(--ethiopian-gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(251, 191, 36, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tibeb-header"></div>
+    <div id="petal-container"></div>
+
+    <nav class="glass-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-serif font-bold italic text-amber-400">ቤተሰብ<span class="text-white ml-2 text-[10px] tracking-[0.3em] font-sans">LEGACY</span></a>
+            <div class="flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em]">
+                <a href="index.html" class="hover:text-amber-400 transition">Hub</a>
+                <a href="all-memories.html" class="hover:text-amber-400 transition">All Pics</a>
+                <a href="holidays.html" class="text-amber-400">Holidays</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-24 relative z-10">
+        <header class="text-center max-w-3xl mx-auto mb-20">
+            <h1 class="text-7xl font-serif italic text-white mb-6">Ethiopian <span class="text-amber-400">Seasons</span></h1>
+            <p class="text-amber-100/40 text-sm tracking-[0.2em] uppercase font-bold">Celebrating our culture, one memory at a time.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="holiday-grid">
+            </div>
+    </main>
+
+    <script>
+        // 1. Create Floating Petals (Adey Abeba style)
+        const petalContainer = document.getElementById('petal-container');
+        const petalCount = 40;
+
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            // Randomize size, position, and speed
+            const size = Math.random() * 10 + 5 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            
+            petalContainer.appendChild(petal);
+        }
+
+        // 2. Data & Rendering
+        const holidays = [
+            { src: 'photo_2025-12-29_18-55-47.jpg', title: 'Enkutatash', amharic: 'እንቁጣጣሽ', date: 'Sept 2025' },
+            { src: 'genna.jpg', title: 'Genna', amharic: 'ገና', date: 'Jan 2025' },
+            { src: 'fasika.jpg', title: 'Fasika', amharic: 'ፋሲካ', date: 'April 2024' },
+            { src: 'coffee.jpg', title: 'Buna Time', amharic: 'የቡና አፈላል', date: 'Family Tradition' }
+        ];
+
+        const grid = document.getElementById('holiday-grid');
+        holidays.forEach(item => {
+            const card = document.createElement('div');
+            card.className = "holiday-card group overflow-hidden cursor-pointer p-3";
+            
+            card.innerHTML = `
+                <div class="relative h-[400px] rounded-xl overflow-hidden">
+                    <img src="${item.src}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://placehold.co/600x800/1a1a05/fbbf24?text=${item.amharic}'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-amber-400 text-xs font-bold tracking-widest">${item.amharic}</span>
+                        <h3 class="text-2xl font-serif text-white mt-1">${item.title}</h3>
+                        <p class="text-white/40 text-[10px] uppercase mt-2">${item.date}</p>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

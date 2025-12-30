@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Family Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .bg-pattern {
+            background-color: #f8f9fa;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23cbd5e1' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .image-stack img {
+            transition: all 0.6s ease;
+        }
+        .image-stack:hover img:first-child { transform: rotate(-5deg) translateX(-20px); }
+        .image-stack:hover img:last-child { transform: rotate(5deg) translateX(20px); }
+    </style>
+</head>
+<body class="bg-pattern text-gray-800 min-h-screen flex flex-col">
+
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="text-2xl font-bold text-blue-600 font-serif italic">FamilyArchive</a>
+                <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
+                    <a href="index.html" class="hover:text-blue-600 transition">Home</a>
+                    <a href="all-memories.html" class="hover:text-blue-600 transition">Gallery</a>
+                    <a href="about.html" class="text-blue-600 border-b-2 border-blue-600">Our Story</a>
+                    <a href="contact.html" class="hover:text-blue-600 transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative flex justify-center items-center image-stack">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=800" 
+                     class="w-2/3 aspect-[3/4] object-cover rounded-2xl shadow-2xl relative z-20" alt="Family">
+                <img src="https://images.unsplash.com/photo-1520850832665-d9a443f1552c?auto=format&fit=crop&q=80&w=800" 
+                     class="w-2/3 aspect-[3/4] object-cover rounded-2xl shadow-xl absolute z-10 opacity-50" alt="Generations">
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="text-blue-600 font-bold tracking-widest text-xs uppercase">Est. 2025</span>
+                    <h1 class="text-5xl md:text-6xl font-serif font-bold text-gray-900 mt-2">More than just <br> photos.</h1>
+                </div>
+
+                <p class="text-xl text-gray-600 leading-relaxed font-light">
+                    This digital archive serves as the heartbeat of the <span class="text-gray-900 font-medium">Terefe, Zelelew, Amar, and Abay</span> families. We believe that history isn't just found in books, but in the candid smiles and quiet moments captured through a lens.
+                </p>
+
+                <div class="grid grid-cols-2 gap-8 pt-6">
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-lg mb-2">Preservation</h4>
+                        <p class="text-gray-500 text-sm">Keeping high-quality memories safe from the fading effects of time.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-lg mb-2">Connection</h4>
+                        <p class="text-gray-500 text-sm">Allowing family members across the globe to share in our collective history.</p>
+                    </div>
+                </div>
+
+                <div class="pt-10">
+                    <a href="all-memories.html" class="inline-flex items-center space-x-3 group">
+                        <span class="bg-blue-600 text-white p-4 rounded-full group-hover:bg-blue-700 transition">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </span>
+                        <span class="font-bold text-gray-900">Explore the Memories</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-32 py-20 bg-white rounded-[3rem] shadow-sm border border-gray-100 text-center px-10">
+            <h2 class="text-3xl font-serif italic text-blue-600 mb-8">"To remember is to live twice."</h2>
+            <div class="max-w-3xl mx-auto text-gray-500 leading-relaxed">
+                Whether it's a holiday gathering, a birthday celebration, or just a quiet Sunday afternoon, every picture tells a story that we want to keep safe for generations to come. This is our legacy, curated with love.
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center text-gray-400 text-sm">
+        &copy; 2025 Family Image Collection. Made with ❤️ for our heritage.
+    </footer>
+
+</body>
+</html>

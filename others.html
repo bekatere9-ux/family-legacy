@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends & Others - Family Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style> 
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(-45deg, #fffaf0, #fef2f2, #fff7ed, #fffaf0);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        } 
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Border Line Animation */
+        .friend-card {
+            transition: all 0.4s ease-in-out;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-5px);
+            border-color: #f59e0b; /* Amber/Gold border */
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.1);
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+        }
+
+        .no-scroll { overflow: hidden; }
+    </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+    <nav class="glass-nav sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="text-2xl font-bold text-amber-600 italic tracking-tight">Family<span class="text-gray-700">Archive</span></a>
+                <div class="flex space-x-6 items-center">
+                    <a href="index.html" class="text-sm font-semibold hover:text-amber-600 transition">Back to Hub</a>
+                    <a href="all-memories.html" class="text-sm font-semibold hover:text-amber-600 transition">All Memories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <header class="text-center mb-16">
+            <div class="inline-block p-3 bg-amber-100 rounded-full mb-4">
+                <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </div>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Extended Family & Friends</h1>
+            <p class="text-gray-500 max-w-xl mx-auto italic">"A community is built on more than just names; it's built on shared smiles."</p>
+        </header>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="others-grid">
+            </div>
+    </main>
+
+    <div id="imageModal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal()">
+        <button class="absolute top-8 right-8 text-white text-5xl hover:text-amber-400 transition">&times;</button>
+        <div class="relative max-w-4xl w-full text-center">
+            <img id="modalImage" class="max-h-[80vh] mx-auto rounded-lg shadow-2xl border-2 border-white/10 transition-transform duration-300 scale-95" src="">
+            <p id="modalCaption" class="mt-4 text-white text-2xl font-light"></p>
+        </div>
+    </div>
+
+    <footer class="py-12 text-center border-t border-amber-100 bg-white/30 backdrop-blur-sm">
+        <p class="text-gray-400 text-sm italic">Celebrating our community &copy; 2025</p>
+    </footer>
+
+    <script>
+        // List your images here
+        const otherPhotos = [
+            { src: 'friendship1.jpg', caption: 'Summer Picnic', date: 'August 2025' },
+            { src: 'community2.jpg', caption: 'Neighborhood Gathering', date: 'July 2025' },
+            { src: 'others3.jpg', caption: 'Special Guests', date: 'May 2025' },
+            { src: 'photo_2025-12-29_18-55-59.jpg', caption: 'A Beautiful Smile', date: 'Dec 2025' }
+        ];
+
+        const grid = document.getElementById('others-grid');
+
+        otherPhotos.forEach(photo => {
+            const card = document.createElement('div');
+            card.className = "friend-card group bg-white rounded-2xl overflow-hidden shadow-sm cursor-pointer";
+            
+            card.onclick = () => openModal(photo.src, photo.caption);
+
+            card.innerHTML = `
+                <div class="h-64 overflow-hidden relative">
+                    <img src="${photo.src}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://placehold.co/400x500?text=Friendship'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-bold bg-amber-500 px-2 py-1 rounded">View Full Size</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-gray-800 text-lg">${photo.caption}</h3>
+                    <p class="text-amber-600 text-xs font-semibold uppercase tracking-widest mt-1">${photo.date}</p>
+                </div>
+                <div class="absolute inset-0 border-0 group-hover:border-b-4 border-amber-400 transition-all pointer-events-none"></div>
+            `;
+            grid.appendChild(card);
+        });
+
+        function openModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalCaption').innerText = caption;
+            modal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+            setTimeout(() => document.getElementById('modalImage').classList.replace('scale-95', 'scale-100'), 50);
+        }
+
+        function closeModal() {
+            document.getElementById('modalImage').classList.replace('scale-100', 'scale-95');
+            setTimeout(() => {
+                document.getElementById('imageModal').classList.add('hidden');
+                document.body.classList.remove('no-scroll');
+            }, 200);
+        }
+    </script>
+</body>
+</html>

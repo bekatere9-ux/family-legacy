@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Family Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style> 
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #f8fafc; 
+        } 
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Intelligent Upload Box Animation */
+        .upload-zone {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .upload-zone:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .input-focus:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <nav class="bg-white/70 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="text-2xl font-bold font-serif italic text-blue-600">FamilyArchive</a>
+                <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
+                    <a href="index.html" class="hover:text-blue-600 transition">Home</a>
+                    <a href="all-memories.html" class="hover:text-blue-600 transition">Archive</a>
+                    <a href="about.html" class="hover:text-blue-600 transition">Our Story</a>
+                    <a href="contact.html" class="text-blue-600 border-b-2 border-blue-600">Connect</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-6 py-20">
+        <div class="max-w-5xl mx-auto">
+            
+            <header class="text-center mb-16">
+                <h1 class="text-5xl font-serif font-bold text-slate-900 mb-4">Contribute to the Legacy</h1>
+                <p class="text-slate-500 text-lg">Have a memory to share? Use the portal below to send it to our curators.</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Why Contribute?</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                            By sharing your photos, you ensure the stories of the Terefe, Zelelew, Amar, and Abay families never fade.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 text-sm">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">✓</div>
+                                <span>High-quality preservation</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-sm">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div>
+                                <span>Share with global family</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 rounded-3xl bg-blue-600 text-white shadow-xl">
+                        <h3 class="text-xl font-bold mb-2">Need Help?</h3>
+                        <p class="text-blue-100 text-sm mb-4">If you have physical photos, contact us for scanning assistance.</p>
+                        <a href="mailto:archive@family.com" class="text-sm font-bold underline">Email the Curator</a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+                        <form onsubmit="event.preventDefault(); alert('Memory sent to the archive for review!');" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Full Name</label>
+                                    <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 input-focus transition-all" placeholder="Enter name">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Branch</label>
+                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 input-focus transition-all">
+                                        <option>Terefe Family</option>
+                                        <option>Zelelew Family</option>
+                                        <option>Amar Family</option>
+                                        <option>Abay Family</option>
+                                        <option>Other / Friends</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">The Memory Details</label>
+                                <textarea rows="4" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 input-focus transition-all" placeholder="Tell us about this photo (Year, Location, Who is in it?)..."></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Upload Images</label>
+                                <div class="upload-zone rounded-2xl p-10 text-center cursor-pointer">
+                                    <svg class="w-10 h-10 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    <p class="text-sm text-slate-500 font-medium">Click to upload or drag and drop</p>
+                                    <p class="text-[10px] text-slate-400 uppercase tracking-tight mt-1">PNG, JPG up to 10MB</p>
+                                    <input type="file" class="hidden">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-slate-900 text-white font-bold py-5 rounded-2xl hover:bg-blue-600 transition-all shadow-lg hover:shadow-blue-200 transform hover:-translate-y-1">
+                                Send to Archive
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-slate-400 text-sm">
+        &copy; 2025 Family Image Collection. Made with ❤️.
+    </footer>
+
+</body>
+</html>
