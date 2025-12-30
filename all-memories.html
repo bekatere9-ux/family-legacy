@@ -7,108 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style> 
-        :root {
-            --accent: #3b82f6;
-            --bg: #020617;
-        }
-
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg);
-            color: #f8fafc;
-            overflow-x: hidden;
-        } 
-
+        :root { --accent: #3b82f6; --bg: #020617; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #f8fafc; overflow-x: hidden; } 
         .font-serif { font-family: 'Playfair Display', serif; }
-
-        /* Animated Mesh Background */
-        .mesh-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-            z-index: -1;
-        }
-
-        /* Cinematic Card Style */
-        .image-card {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: none; /* Custom cursor area */
-        }
-
-        .image-card:hover {
-            transform: scale(1.02) translateY(-10px);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
-        }
-
-        .image-card img {
-            transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1), filter 0.8s ease;
-            filter: saturate(0.8) brightness(0.9);
-        }
-
-        .image-card:hover img {
-            transform: scale(1.1);
-            filter: saturate(1.1) brightness(1.1);
-        }
-
-        /* Custom Hover Cursor Overlay */
-        .view-btn {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: white;
-            color: black;
-            padding: 12px 24px;
-            border-radius: 99px;
-            font-weight: 700;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        .image-card:hover .view-btn {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* Modern Filter Buttons */
-        .filter-btn {
-            position: relative;
-            padding: 10px 24px;
-            color: #94a3b8;
-            font-weight: 600;
-            transition: all 0.4s ease;
-        }
-
-        .filter-btn.active {
-            color: #fff;
-        }
-
-        .filter-btn.active::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 24px; right: 24px;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
+        .mesh-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.15) 0%, transparent 50%); z-index: -1; }
+        .image-card { position: relative; border-radius: 24px; overflow: hidden; transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); cursor: none; }
+        .image-card:hover { transform: scale(1.02) translateY(-10px); border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8); }
+        .image-card img { transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1), filter 0.8s ease; filter: saturate(0.8) brightness(0.9); }
+        .image-card:hover img { transform: scale(1.1); filter: saturate(1.1) brightness(1.1); }
+        .view-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); background: white; color: black; padding: 12px 24px; border-radius: 99px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 20; pointer-events: none; }
+        .image-card:hover .view-btn { transform: translate(-50%, -50%) scale(1); }
+        .filter-btn { position: relative; padding: 10px 24px; color: #94a3b8; font-weight: 600; transition: all 0.4s ease; }
+        .filter-btn.active { color: #fff; }
+        .filter-btn.active::after { content: ""; position: absolute; bottom: 0; left: 24px; right: 24px; height: 2px; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
         .no-scroll { overflow: hidden; }
-
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        @keyframes reveal { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { animation: reveal 1s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
     </style>
 </head>
@@ -117,9 +30,7 @@
     <div class="mesh-bg"></div>
 
     <nav class="sticky top-0 z-50 px-8 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5">
-        <a href="index.html" class="text-xl font-bold tracking-tighter uppercase">
-            Legacy<span class="text-blue-500">Archive</span>
-        </a>
+        <a href="index.html" class="text-xl font-bold tracking-tighter uppercase">Legacy<span class="text-blue-500">Archive</span></a>
         <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em]">
             <a href="index.html" class="hover:text-blue-400 transition">Hub</a>
             <a href="holidays.html" class="hover:text-blue-400 transition">Holidays</a>
@@ -136,10 +47,8 @@
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div class="flex flex-wrap gap-2" id="filter-container">
                 <button onclick="filterImages('all')" class="filter-btn active" data-filter="all">Universal</button>
-                <button onclick="filterImages('Terefe')" class="filter-btn" data-filter="Terefe">Terefe</button>
-                <button onclick="filterImages('Zelelew')" class="filter-btn" data-filter="Zelelew">Zelelew</button>
                 <button onclick="filterImages('Holiday')" class="filter-btn" data-filter="Holiday">Seasons</button>
-                <button onclick="filterImages('Old')" class="filter-btn" data-filter="Old">Vintage</button>
+                <button onclick="filterImages('Family')" class="filter-btn" data-filter="Family">Gatherings</button>
             </div>
 
             <div class="bg-white/5 border border-white/10 rounded-full px-6 py-2 flex items-center space-x-4">
@@ -151,19 +60,12 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10" id="gallery-grid">
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10" id="gallery-grid"></div>
     </main>
 
     <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4" onclick="closeModal()">
-        <div class="absolute top-10 right-10 flex space-x-6">
-            <button class="text-white/50 hover:text-white transition text-xs font-bold uppercase tracking-widest">Close Esc</button>
-        </div>
-        
         <div class="max-w-6xl w-full flex flex-col items-center">
-            <div class="relative group">
-                <img id="modalImage" class="max-h-[75vh] rounded-xl shadow-2xl border border-white/10 transition-all duration-700 scale-95" src="">
-            </div>
+            <img id="modalImage" class="max-h-[75vh] rounded-xl shadow-2xl border border-white/10 transition-all duration-700 scale-95" src="">
             <div class="mt-12 text-center">
                 <p id="modalMeta" class="text-blue-500 font-bold uppercase tracking-[0.4em] text-[10px] mb-4"></p>
                 <h3 id="modalCaption" class="text-4xl font-serif italic text-white"></h3>
@@ -171,49 +73,37 @@
         </div>
     </div>
 
-    <footer class="py-32 border-t border-white/5 text-center">
-        <p class="text-slate-600 text-[10px] uppercase tracking-[1em]">The Eternal Collection</p>
-    </footer>
-
     <script>
         const images = [
-            { src: 'photo_2025-12-29_18-55-47.jpg', tag: 'Holiday', caption: 'Midnight New Year Prep', date: '2025-12-29' },
-            { src: 'terefe_1.jpg', tag: 'Terefe', caption: 'The Terefe Matriarchs', date: '2025-11-15' },
-            { src: 'zelelew_1.jpg', tag: 'Zelelew', caption: 'Afternoon in the Garden', date: '2025-10-05' },
-            { src: 'old_photo.jpg', tag: 'Old', caption: 'The Foundation', date: '1972-05-20' },
-            { src: 'holiday_2.jpg', tag: 'Holiday', caption: 'Christmas Eve Table', date: '2024-12-24' },
-            { src: 'old_2.jpg', tag: 'Old', caption: 'Summer of 84', date: '1984-07-10' }
+            { src: 'photo_2025-04-18_17-42-30.jpg', tag: 'Family', caption: 'Full Family Gathering', date: '2025-04-18' },
+            { src: 'photo_2025-04-18_17-42-31.jpg', tag: 'Family', caption: 'The Younger Generation', date: '2025-04-18' },
+            { src: 'photo_2025-04-18_17-57-39.jpg', tag: 'Holiday', caption: 'Handstand Fun in the Sun', date: '2025-04-18' },
+            { src: 'photo_2025-04-18_17-57-38.jpg', tag: 'Holiday', caption: 'Garden Acrobats', date: '2025-04-18' },
+            { src: 'photo_2025-04-18_17-57-37.jpg', tag: 'Family', caption: 'Laughter on the Grass', date: '2025-04-18' },
+            { src: 'photo_2025-04-18_17-42-33.jpg', tag: 'Family', caption: 'Family Smiles', date: '2025-04-18' }
         ];
 
         const galleryGrid = document.getElementById('gallery-grid');
 
         function displayImages(filter = 'all') {
             galleryGrid.innerHTML = '';
-            
             let filtered = filter === 'all' ? images : images.filter(img => img.tag === filter);
-
             const order = document.getElementById('sortOrder').value;
-            filtered.sort((a, b) => {
-                return order === 'newest' ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date);
-            });
+            filtered.sort((a, b) => order === 'newest' ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
 
             filtered.forEach((img, index) => {
                 const card = document.createElement('div');
-                // Alternating aspect ratios for a dynamic masonry feel
                 const isTall = index % 3 === 0;
                 card.className = `image-card group reveal ${isTall ? 'aspect-[3/4]' : 'aspect-square'}`;
                 card.style.animationDelay = `${index * 100}ms`;
-                
                 card.onclick = () => openModal(img.src, img.caption, img.date, img.tag);
-
                 card.innerHTML = `
                     <div class="view-btn">View Moment</div>
-                    <img src="${img.src}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/600x800/020617/3b82f6?text=Archive+Image'">
+                    <img src="${img.src}" class="w-full h-full object-cover" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
                     <div class="absolute bottom-0 p-8 w-full">
                         <p class="text-blue-400 text-[9px] font-black uppercase tracking-[0.3em] mb-2">${img.tag}</p>
                         <h3 class="text-white text-xl font-bold font-serif italic leading-tight mb-2">${img.caption}</h3>
-                        <div class="h-px w-0 group-hover:w-full bg-blue-500 transition-all duration-700"></div>
                         <p class="text-slate-500 text-[10px] mt-4 font-bold uppercase tracking-widest">${new Date(img.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
                     </div>
                 `;
@@ -222,9 +112,7 @@
         }
 
         function filterImages(tag) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-filter') === tag);
-            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-filter') === tag));
             displayImages(tag);
         }
 
@@ -235,15 +123,11 @@
             document.getElementById('modalMeta').innerText = `${tag} Collection — ${new Date(date).getFullYear()}`;
             modal.classList.remove('hidden');
             document.body.classList.add('no-scroll');
-            setTimeout(() => document.getElementById('modalImage').classList.replace('scale-95', 'scale-100'), 50);
         }
 
         function closeModal() {
-            document.getElementById('modalImage').classList.replace('scale-100', 'scale-95');
-            setTimeout(() => {
-                document.getElementById('imageModal').classList.add('hidden');
-                document.body.classList.remove('no-scroll');
-            }, 300);
+            document.getElementById('imageModal').classList.add('hidden');
+            document.body.classList.remove('no-scroll');
         }
 
         window.onload = () => displayImages();
